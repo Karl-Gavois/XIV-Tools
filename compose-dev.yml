@@ -1,0 +1,58 @@
+services:
+
+    frontend:
+        container_name: XIVTools-frontdev
+        build:
+            context: ./docker/dev/client/
+            dockerfile: ./Dockerfile
+        restart: always
+        ports:
+            - 3005:3000
+        volumes:
+            - ./client/:/app/
+        networks:
+            - XIVTools
+            
+    backend:
+        container_name: XIVTools-backdev
+        build:
+            context: ./docker/dev/api/
+            dockerfile: ./Dockerfile
+        restart: always
+        ports:
+            - 8080:80
+        volumes:
+            - ./API/:/var/www/
+        networks:
+            - XIVTools
+
+    database:
+        container_name: database-dev
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: XIVTools
+        ports:
+            - 3306
+        volumes:
+            - db-data:/var/lib/mysql
+        networks:
+            - XIVTools
+
+    phpmyadmin:
+        container_name: phpmyadmin-dev
+        image: phpmyadmin:latest
+        restart: always
+        ports:
+            - 8001:80
+        environment:
+            - PMA_HOST=database
+        networks:
+            - XIVTools
+
+volumes:
+    db-data:
+
+networks:
+    XIVTools:
