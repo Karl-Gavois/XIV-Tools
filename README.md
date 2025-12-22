@@ -13,8 +13,7 @@ Un hub d’outils pratiques pour les joueurs et compagnies libres de **Final Fan
    - Stockage en temps réel via **Supabase**.
 
 2. **[Feature à venir]** Suivi d’événements in-game  
-3. **[Feature à venir]** Calculateur de récompenses ou de Gils  
-4. **[Feature à venir]** Outils pour compagnies libres (gestion interne, rôles…)
+3. **[Feature à venir]** Outils pour compagnies libres (gestion interne, rôles…)
 
 ## Tech stack
 
