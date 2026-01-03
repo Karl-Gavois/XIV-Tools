@@ -1,8 +1,12 @@
 {
-    "scripts": {
-        "docker-start": "clear && docker-compose -f compose-dev.yml up -d --build",
-        "docker-stop": "clear && docker-compose -f compose-dev.yml down",
-        "back-scripts": "clear && docker exec -it XIVTools-backdev bash",
-        "tests-back":"clear && docker exec -it XIVTools-backdev sh -c ./runtests.sh"
-    }
+  "scripts": {
+    "docker-start": "clear && docker-compose -f compose-dev.yml up -d --build",
+    "docker-stop": "clear && docker-compose -f compose-dev.yml down",
+    "back-scripts": "clear && docker exec -it XIVTools-backdev bash",
+    "tests-back": "clear && docker exec -it XIVTools-backdev sh -c ./runtests.sh",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
 }
