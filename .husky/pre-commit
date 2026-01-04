@@ -27,4 +27,11 @@ echo "\n==>$blue Tests Overall$nc\n"
 
 # Soon
 
-echo "\n==>$green Tests successfull$nc\n"
+if ! git diff --quiet; then
+  echo "\n=>$yellow Files modified by tools, re-staging...$nc\n"
+  git add .
+else
+  echo "\n=>$green No formatting changes$nc\n"
+fi
+
+echo "\n==>$red End pre-commit$nc\n"

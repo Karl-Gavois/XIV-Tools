@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'XIV Tools',
-    template: '%s | XIV Tools',
+    default: "XIV Tools",
+    template: "%s | XIV Tools",
   },
-  description: 'Des outils pratiques pour les joueurs et compagnies libres de Final Fantasy XIV.',
+  description:
+    "Des outils pratiques pour les joueurs et compagnies libres de Final Fantasy XIV.",
 };
-
 
 export default function RootLayout({
   children,
