@@ -83,7 +83,7 @@ export default function LoginLogic() {
                   required
                   placeholder="Adresse e-mail"
                   className="w-full rounded-md border border-white/10 bg-[#151722] px-4 py-3 pl-11 text-sm text-gray-100 placeholder-gray-500 focus:border-yellow-500 focus:outline-none focus:ring-1 focus:ring-yellow-500"
-                  />
+                />
                 <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                   ✉️
                 </span>
@@ -101,7 +101,7 @@ export default function LoginLogic() {
                   required
                   placeholder="Mot de passe"
                   className="w-full rounded-md border border-white/10 bg-[#151722] px-4 py-3 pl-11 text-sm text-gray-100 placeholder-gray-500 focus:border-yellow-500 focus:outline-none focus:ring-1 focus:ring-yellow-500"
-                  />
+                />
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                   🔒
                 </span>
@@ -111,10 +111,10 @@ export default function LoginLogic() {
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-yellow-400 transition"
                   aria-label={
                     showPassword
-                    ? "Masquer le mot de passe"
-                    : "Afficher le mot de passe"
+                      ? "Masquer le mot de passe"
+                      : "Afficher le mot de passe"
                   }
-                  >
+                >
                   {showPassword ? "🙈" : "👁️"}
                 </button>
               </div>
@@ -122,16 +122,16 @@ export default function LoginLogic() {
                 <Link
                   href="#"
                   className="text-xs text-yellow-400 hover:underline"
-                  >
+                >
                   Mot de passe oublié ?
                 </Link>
               </div>
             </div>
-                    {error && (
-                      <div className="rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                        {error}
-                      </div>
-                    )}
+            {error && (
+              <div className="rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                {error}
+              </div>
+            )}
             <button
               type="submit"
               disabled={loading}

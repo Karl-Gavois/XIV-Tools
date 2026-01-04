@@ -1,9 +1,9 @@
 import LoginLogic from "./login";
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Connexion',
-  description: 'Page d’accueil de mon site',
+  description: 'Page de connexion de XIV Tools',
 };
 
 
