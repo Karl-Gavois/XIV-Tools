@@ -1,5 +1,4 @@
 import LoginLogic from "./login";
-import type { Metadata } from "next";
 
 export const metadata = {
   title: "Connexion",
