@@ -1,0 +1,37 @@
+yellow="\033[33m"
+green="\033[32m"
+red="\033[31m"
+blue="\033[34m"
+nc="\033[0m"
+
+echo "\n==>$red Start pre-commit client$nc\n"
+
+echo "\n=>$yellow Front dependencies$nc\n"
+(cd client && npm audit)
+
+echo "\n=>$yellow Prettier$nc\n"
+(cd client && npx prettier --write "app/**/*.{js,jsx,ts,tsx}")
+
+echo "\n=>$yellow Linting$nc\n"
+(cd client && npm run lint)
+
+echo "\n==>$red Start pre-commit api$nc\n"
+
+echo "\n=>$yellow Check security$nc\n"
+(cd API && docker exec XIVTools-backdev sh -c "symfony check:security") 
+
+echo "\n=>$yellow Code Sniffer$nc\n"
+(cd API && docker exec XIVTools-backdev sh -c "cd /var/www/ && ./vendor/bin/phpcs --standard=PSR12 src")
+
+echo "\n==>$blue Tests Overall$nc\n"
+
+# Soon
+
+if ! git diff --quiet; then
+  echo "\n=>$yellow Files modified by tools, re-staging...$nc\n"
+  git add .
+else
+  echo "\n=>$green No formatting changes$nc\n"
+fi
+
+echo "\n==>$red End pre-commit$nc\n"
