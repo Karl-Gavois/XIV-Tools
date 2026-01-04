@@ -9,8 +9,24 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  function getLoginErrorMessage(status: number): string {
+    switch (status) {
+      case 400:
+        return "Requête invalide. Vérifiez les informations saisies.";
+      case 401:
+        return "Adresse e-mail ou mot de passe incorrect.";
+      case 403:
+        return "Accès refusé.";
+      case 500:
+        return "Erreur serveur. Merci de réessayer plus tard.";
+      default:
+        return "Une erreur est survenue. Veuillez réessayer.";
+    }
+  }
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,9 +47,9 @@ export default function LoginPage() {
       );
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || "Login failed");
+        throw new Error(getLoginErrorMessage(response.status));
       }
+
 
       router.push("/dashboard");
     } catch (err) {
@@ -53,9 +69,7 @@ export default function LoginPage() {
       {/* <Navbar /> */}
       <div className="relative z-10 flex min-h-[calc(100vh-80px)] items-center justify-center px-4">
         <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
-          <h1 className="text-center text-2xl font-semibold">
-            Connectez-vous
-          </h1>
+          <h1 className="text-center text-2xl font-semibold">Connectez-vous</h1>
           <div className="mx-auto my-4 h-px w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Affichage erreurs */}
@@ -88,7 +102,7 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -98,6 +112,14 @@ export default function LoginPage() {
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                   🔒
                 </span>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-yellow-400 transition"
+                  aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
               </div>
               <div className="mt-2 text-right">
                 <Link
@@ -111,7 +133,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-md bg-gradient-to-r from-yellow-500 to-amber-600 py-3 font-medium text-black shadow-lg transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+              className="cursor-pointer w-full rounded-md bg-gradient-to-r from-yellow-500 to-amber-600 py-3 font-medium text-black shadow-lg transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
             >
               {loading ? "Connexion..." : "Se connecter"}
             </button>
@@ -119,7 +141,7 @@ export default function LoginPage() {
           <p className="mt-6 text-center text-sm text-gray-400">
             Pas encore de compte ?{" "}
             <Link href="/register" className="text-yellow-400 hover:underline">
-              S`&apos;`inscrire
+              S&apos;inscrire
             </Link>
           </p>
         </div>
