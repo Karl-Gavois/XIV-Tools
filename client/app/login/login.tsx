@@ -70,7 +70,6 @@ export default function LoginLogic() {
           <h1 className="text-center text-2xl font-semibold">Connectez-vous</h1>
           <div className="mx-auto my-4 h-px w-24 bg-gradient-to-r from-transparent via-yellow-500 to-transparent" />
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Affichage erreurs */}
             <div>
               <label className="mb-2 block text-sm text-gray-300">
                 Adresse e-mail
